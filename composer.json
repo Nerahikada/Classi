@@ -1,0 +1,22 @@
+{
+    "name": "nerahikada/classi",
+    "description": "Classi API written by PHP",
+    "type": "library",
+    "require": {
+        "php": ">=7.2",
+        "guzzlehttp/guzzle": "^6.5",
+        "paquettg/php-html-parser": "^2.1"
+    },
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "Nerahikada",
+            "email": "hkshirorom@yahoo.co.jp"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Classi\\": "src/"
+        }
+    }
+}
