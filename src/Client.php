@@ -21,7 +21,18 @@ declare(strict_types=1);
 
 namespace Classi;
 
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Exception\RequestException;
+use PHPHtmlParser\Dom;
+
 class Client{
+
+	/** @var GuzzleHttpClient */
+	private $httpClient;
+
+	/** @var CookieJar */
+	private $cookieJar;
 
 	public function __construct(string $username, string $password){
 		if(strpos($username, "SASSI") !== 0){
