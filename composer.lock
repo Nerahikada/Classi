@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32392d3c501237cc6e0cf1fd2de4b427",
+    "content-hash": "81a5d50560103ed7cec72ac42cf2772f",
     "packages": [
+        {
+            "name": "analog/analog",
+            "version": "1.0.13-stable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jbroadway/analog.git",
+                "reference": "718ac1dad4577a15cadadab01b79d1923f5a9c6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jbroadway/analog/zipball/718ac1dad4577a15cadadab01b79d1923f5a9c6d",
+                "reference": "718ac1dad4577a15cadadab01b79d1923f5a9c6d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "psr/log": "1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Analog": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johnny Broadway",
+                    "email": "johnny@johnnybroadway.com",
+                    "homepage": "http://www.johnnybroadway.com/"
+                }
+            ],
+            "description": "PHP logging class that can be extended via closures. Includes several pre-built handlers including file, mail, syslog, HTTP post, and MongoDB.",
+            "homepage": "https://github.com/jbroadway/analog",
+            "keywords": [
+                "alerts",
+                "debug",
+                "debugging",
+                "error",
+                "log",
+                "logger",
+                "logging",
+                "syslog"
+            ],
+            "time": "2019-06-27T16:18:03+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.5.2",
@@ -342,6 +394,53 @@
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
+            "name": "psr/log",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2019-11-01T11:05:21+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -388,6 +487,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.2"
+    },
     "platform-dev": []
 }

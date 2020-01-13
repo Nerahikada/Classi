@@ -5,7 +5,8 @@
     "require": {
         "php": ">=7.2",
         "guzzlehttp/guzzle": "^6.5",
-        "paquettg/php-html-parser": "^2.1"
+        "paquettg/php-html-parser": "^2.1",
+        "analog/analog": "^1.0"
     },
     "license": "GNU General Public License v3.0",
     "authors": [
