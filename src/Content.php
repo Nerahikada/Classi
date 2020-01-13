@@ -21,15 +21,20 @@ declare(strict_types=1);
 
 namespace Classi;
 
-class Utility{
+abstract class Content{
 
-	public static function getStringBetween(string $string, string $start, string $end) : string{
-		$s = strpos($string, $start) + strlen($start);
-		$e = strpos($string, $end, $s + 1);
-		return substr($string, $s, $e - $s);
+	/** @var Client */
+	protected $client;
+
+	/** @var string */
+	protected $url;
+
+	public function __construct(Client $client, string $url){
+		$this->client = $client;
+		$this->url = $url;
 	}
 
-	public static function trimId(string $input) : string{
-		return trim(trim($input, 'ID:'));
-	}
+	abstract public function getType() : string;
+
+	abstract public function doHomework() : void;
 }

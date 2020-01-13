@@ -54,7 +54,7 @@ class VideoCourse{
 		return $this->id;
 	}
 
-	public function getLectures : array{
+	public function getLectures() : array{
 		return $this->lectures;
 	}
 }

@@ -27,26 +27,34 @@ class VideoLecture{
 	private $url;
 
 	/** @var string */
-	private $name;
+	private $title;
 
 	/** @var string */
-	private $subject;
+	private $name;
 
-	public function __construct(string $url, string $name, string $subject){
+	/** @var Content[] */
+	private $contents;
+
+	public function __construct(string $url, string $title, string $name, array $contents){
 		$this->url = $url;
+		$this->title = $title;
 		$this->name = $name;
-		$this->subject = $subject;
+		$this->contents = $contents;
 	}
 
 	public function getUrl() : string{
 		return $this->url;
 	}
 
+	public function getTitle() : string{
+		return $this->title;
+	}
+
 	public function getName() : string{
 		return $this->name;
 	}
 
-	public function getSubject() : string{
-		return $this->subject;
+	public function getContents() : array{
+		return $this->contents;
 	}
 }

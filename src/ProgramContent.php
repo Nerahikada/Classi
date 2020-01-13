@@ -21,15 +21,13 @@ declare(strict_types=1);
 
 namespace Classi;
 
-class Utility{
+class ProgramContent extends Content{
 
-	public static function getStringBetween(string $string, string $start, string $end) : string{
-		$s = strpos($string, $start) + strlen($start);
-		$e = strpos($string, $end, $s + 1);
-		return substr($string, $s, $e - $s);
+	public function getType() : string{
+		return 'program';
 	}
 
-	public static function trimId(string $input) : string{
-		return trim(trim($input, 'ID:'));
+	public function doHomework() : void{
+		//TODO
 	}
 }
