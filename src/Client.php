@@ -21,15 +21,17 @@ declare(strict_types=1);
 
 namespace Classi;
 
-use Analog\Handler\Ignore;
+use Analog\Analog;
+use Analog\Handler\Stderr;
 use Analog\Handler\Threshold;
 use Analog\Logger;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use PHPHtmlParser\Dom;
-use Psr\Log\LogLevel;
 
 class Client{
+
+	const TIMEZONE = 'Asia/Tokyo';
 
 	/** @var Logger */
 	private $logger;
@@ -37,16 +39,18 @@ class Client{
 	/** @var GuzzleHttpClient */
 	private $httpClient;
 
-	public function __construct(string $username, string $password, int $loggingLevel = LogLevel::INFO){
+	public function __construct(string $username, string $password, int $loggingLevel = Analog::INFO){
 		$this->logger = new Logger();
-		$this->logger->handler(Threshold::init($loggingLevel, Ignore::init()));
+		$this->logger->handler(Threshold::init(
+			function($info, $buffered = false){
+				echo ($buffered ? $info : vsprintf(Analog::$format, $info));
+			}, $loggingLevel));
+		//$this->logger->format('[%2$s/%3$d] %4$s' . PHP_EOL);
+		$this->logger->format('[%2$s] %4$s' . PHP_EOL);
+		Analog::$timezone = self::TIMEZONE;
 
-		$this->logger->info("Logging testing.");
-		$this->logger->debug("It is debugging message.");
-		$this->logger->alert("Wow! THIS IS AN ALERT!!!");
-
-		if(strpos($username, "SASSI") !== 0){
-			throw new \RuntimeException("Invalid username");
+		if(strpos($username, 'SASSI') !== 0){
+			throw new \RuntimeException('Invalid username');
 		}
 
 		$this->httpClient = new GuzzleHttpClient(['cookies' => true]);

@@ -80,7 +80,7 @@ class Challenge{
 			return null;
 		}
 		try{
-			return new \DateTimeImmutable($date, new \DateTimeZone('Asia/Tokyo'));
+			return new \DateTimeImmutable($date, new \DateTimeZone(Client::TIMEZONE));
 		}catch(\Exception $e){
 			throw new \InvalidArgumentException('Invalid value');
 		}
