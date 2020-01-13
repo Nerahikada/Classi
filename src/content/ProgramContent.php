@@ -19,7 +19,7 @@
 
 declare(strict_types=1);
 
-namespace Classi;
+namespace Classi\content;
 
 class ProgramContent extends Content{
 

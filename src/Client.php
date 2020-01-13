@@ -25,6 +25,8 @@ use Analog\Analog;
 use Analog\Handler\Stderr;
 use Analog\Handler\Threshold;
 use Analog\Logger;
+use Classi\content\ProgramContent;
+use Classi\content\VideoContent;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use PHPHtmlParser\Dom;

@@ -19,7 +19,10 @@
 
 declare(strict_types=1);
 
-namespace Classi;
+namespace Classi\content;
+
+use Classi\Client;
+use Classi\Utility;
 
 class VideoContent extends Content{
 
