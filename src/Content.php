@@ -29,12 +29,28 @@ abstract class Content{
 	/** @var string */
 	protected $url;
 
-	public function __construct(Client $client, string $url){
+	/** @var bool */
+	protected $finished;
+
+	public function __construct(Client $client, string $url, bool $finished){
 		$this->client = $client;
 		$this->url = $url;
+		$this->finished = $finished;
+		$this->init();
 	}
 
 	abstract public function getType() : string;
 
+	// for other properties
+	abstract protected function init() : void;
+
 	abstract public function doHomework() : void;
+
+	public function getUrl() : string{
+		return $this->getUrl();
+	}
+
+	public function isFinished() : bool{
+		return $this->finished;
+	}
 }

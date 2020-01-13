@@ -27,6 +27,8 @@ class ProgramContent extends Content{
 		return 'program';
 	}
 
+	public function init() : void{}
+
 	public function doHomework() : void{
 		//TODO
 	}

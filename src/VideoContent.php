@@ -27,6 +27,8 @@ class VideoContent extends Content{
 		return 'video';
 	}
 
+	public function init() : void{}
+
 	public function doHomework() : void{
 		//TODO
 	}

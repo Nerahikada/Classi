@@ -81,6 +81,9 @@ class Client{
 		return (new Dom())->load((string) $response->getBody());
 	}
 
+	/**
+	 * @return VideoCourse[]
+	 */
 	public function getHomeworkList() : array{
 		$result = [];
 		$this->getLogger()->debug('Getting all delivered challenge history...');
@@ -114,7 +117,7 @@ class Client{
 				// This challenge is not valid.
 				continue;
 			}
-			
+
 			$lectures = [];
 			foreach($courseDom->find('.task-list')->find('a') as $task){
 				$lectureDom = $this->getDom(($lectureUrl = 'https://video.classi.jp' . $task->href));
@@ -122,7 +125,8 @@ class Client{
 				foreach($lectureDom->find('.video_lecture_content') as $lecture){
 					$dom = $this->getDom(($url = 'https://video.classi.jp' . $lecture->href));
 					$type = $dom->find('#content_type')->value;
-					$contents[] = ($type === 'video' ? new VideoContent($this, $url) : new ProgramContent($this, $url));
+					$tmp = ['video' => VideoContent::class, 'program' => ProgramContent::class];
+					$contents[] = new $tmp[$type]($this, $url, ($lecture->find('.check-mark')->count !== 0));
 					$this->getLogger()->debug('Content: ' . $type);
 				}
 				$lectures[] = new VideoLecture($lectureUrl, $lectureDom->find('h1')->text, $lectureDom->find('h2')->text, $contents);
