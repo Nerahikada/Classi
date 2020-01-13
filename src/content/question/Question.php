@@ -23,5 +23,7 @@ namespace Classi\content\question;
 
 abstract class Question{
 
-	// ???? 何をしたらいいんだ？？・
+	public function sendAnswer() : void{
+		// TODO: ?? /?__????.???..??\/
+	}
 }
