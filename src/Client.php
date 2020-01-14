@@ -30,6 +30,7 @@ use Classi\content\VideoContent;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use PHPHtmlParser\Dom;
+use Psr\Http\Message\ResponseInterface;
 
 class Client{
 
@@ -79,8 +80,11 @@ class Client{
 	}
 
 	public function getDom(string $url) : Dom{
-		$response = $this->httpClient->get($url);
-		return (new Dom())->load((string) $response->getBody());
+		return $this->responseToDom($this->httpClient->get($url));
+	}
+
+	public function responseToDom(ResponseInterface $res) : Dom{
+		return (new Dom())->load((string) $res->getBody());
 	}
 
 	/**

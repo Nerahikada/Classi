@@ -21,6 +21,8 @@ declare(strict_types=1);
 
 namespace Classi\content;
 
+use Classi\content\question\SelfCheckQuestion;
+
 class ProgramContent extends Content{
 
 	public function getType() : string{
@@ -30,6 +32,13 @@ class ProgramContent extends Content{
 	public function init() : void{}
 
 	public function doHomework() : void{
-		//TODO
+		$response = $this->client->getHttpClient()->get($this->url);
+		$body = (string) $response->getBody();
+
+		if(strpos($body, '%%SELF_RATING_NOT_ANSWERED_YET%%') !== false){
+			$question = new SelfCheckQuestion($this->client, $this->url);
+		}else{
+			//
+		}
 	}
 }
