@@ -36,12 +36,7 @@ class CheckboxQuestion extends SelectableQuestion{
 			}
 
 			$this->choices[(int) $input->value] = $choice;
-			/**
-			 * answer_data[sections][][questions][][user_answer][] を
-			 * answer_data[sections][][questions][][user_answer] にするために
-			 * ごり押し！ゴリラ！！！！
-			 */
-			$this->choiceNames[(int) $input->value] = substr($input->name, 0, strlen($input->name) - 2);
+			$this->choiceNames[(int) $input->value] =$input->name;
 		}
 	}
 
@@ -53,11 +48,11 @@ class CheckboxQuestion extends SelectableQuestion{
 			$answer = ($dd = $answerDom->find('dd'))->count() > 0 ? $dd->text : $answerDom->text;
 			$answer = trim($answer);
 			if(empty($answer)){
-				$img = $answerDom->find('.img');
+				$img = $answerDom->find('img');
 				if($img->count() === 0){
 					throw new \RuntimeException('Answer is empty');
 				}
-				$answers = $img->src;
+				$answer = $img->src;
 			}
 			$this->answers[] = $answer;
 		}

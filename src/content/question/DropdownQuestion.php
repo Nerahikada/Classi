@@ -31,13 +31,7 @@ class DropdownQuestion extends SelectableQuestion{
 				$choice[] = $s->text;
 			}
 			$this->choices[] = $choice;
-			/**
-			 * answer_data[sections][][questions][][user_answer][] を
-			 * answer_data[sections][][questions][][user_answer] にするために
-			 * ごり押し！ゴリラ！！！！
-			 */
-			$input = $select->find('input');
-			$this->choiceNames[] = substr($input->name, 0, strlen($input->name) - 2);
+			$this->choiceNames[] = $select->find('input')->name;
 		}
 	}
 

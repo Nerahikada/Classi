@@ -27,12 +27,7 @@ class InputQuestion extends SelectableQuestion{
 		$dom = $this->client->getDom($this->url);
 		foreach($dom->find('.spen-mod-input-text') as $input){
 			$this->choices[] = null;
-			/**
-			 * answer_data[sections][][questions][][user_answer][] を
-			 * answer_data[sections][][questions][][user_answer] にするために
-			 * ごり押し！ゴリラ！！！！
-			 */
-			$this->choiceNames[] = substr($input->name, 0, strlen($input->name) - 2);
+			$this->choiceNames[] = $input->name;
 		}
 	}
 
