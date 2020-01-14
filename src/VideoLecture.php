@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace Classi;
 
-use Class\content\Content;
+use Classi\content\Content;
 
 class VideoLecture{
 

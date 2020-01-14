@@ -49,7 +49,7 @@ class VideoContent extends Content{
 		$response = $this->client->getHttpClient()->post('https://video.classi.jp/api/v1/students/videos/start_study', [
 			'body' => $postData,
 			'headers' => [
-				'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				'content-type' => 'application/x-www-form-urlencoded;charset=UTF-8'
 			]
 		]);
 
@@ -62,7 +62,7 @@ class VideoContent extends Content{
 		$this->client->getHttpClient()->patch('https://video.classi.jp/api/v1/students/video_complete', [
 			'body' => $postData,
 			'headers' => [
-				'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				'content-type' => 'application/x-www-form-urlencoded;charset=UTF-8'
 			]
 		]);
 

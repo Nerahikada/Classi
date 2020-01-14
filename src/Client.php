@@ -104,6 +104,7 @@ class Client{
 			$this->getLogger()->debug('Delivered Challenge: ' . $delivery->getName());
 			$dom = $this->getDom($delivery->getUrl());
 			$tmp = $dom->find('.inner-block')->innerHtml();
+			$deadline = (strpos($tmp, 'limit_label_margin') !== false) ? $dom->find('.limit_label_margin')->text : Utility::getStringBetween($tmp, '取組期限</th><td>', '</td>');
 			$challenge = new Challenge(
 				$delivery->getUrl(),
 				$dom->find('.heading-text')->text,
@@ -111,7 +112,7 @@ class Client{
 				$dom->find('.teacher-name')->text,
 				$dom->find('.message_box')->text,
 				Utility::getStringBetween($tmp, '配信日時</th><td>', '</td>'),
-				Utility::getStringBetween($tmp, '取組期限</th><td>', '</td>'),
+				$deadline,
 				Utility::getStringBetween($tmp, '最終取組</th><td>', '</td>'),
 				(int) $dom->find('.myStat')->{'data-percent'},
 				'https://video.classi.jp' . $dom->find('.navy-btn')->href
@@ -132,7 +133,7 @@ class Client{
 					$dom = $this->getDom(($url = 'https://video.classi.jp' . $lecture->href));
 					$type = $dom->find('#content_type')->value;
 					$tmp = ['video' => VideoContent::class, 'program' => ProgramContent::class];
-					$contents[] = new $tmp[$type]($this, $url, ($lecture->find('.check-mark')->count !== 0));
+					$contents[] = new $tmp[$type]($this, $url, ($lecture->find('.check-mark')->count() !== 0));
 					$this->getLogger()->debug('Content: ' . $type);
 				}
 				$lectures[] = new VideoLecture($lectureUrl, $lectureDom->find('h1')->text, $lectureDom->find('h2')->text, $contents);

@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace Classi\content;
 
-use Class\Client;
+use Classi\Client;
 
 abstract class Content{
 
