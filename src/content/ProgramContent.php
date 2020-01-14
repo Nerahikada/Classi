@@ -21,6 +21,7 @@ declare(strict_types=1);
 
 namespace Classi\content;
 
+use Classi\content\question\CheckboxQuestion;
 use Classi\content\question\SelfCheckQuestion;
 
 class ProgramContent extends Content{
@@ -38,7 +39,9 @@ class ProgramContent extends Content{
 		if(strpos($body, '%%SELF_RATING_NOT_ANSWERED_YET%%') !== false){
 			$question = new SelfCheckQuestion($this->client, $this->url);
 		}else{
-			//
+			if(strpos($body, 'type="checkbox"') !== false){
+				$question = new CheckboxQuestion($this->client, $this->url);
+			}
 		}
 	}
 }
