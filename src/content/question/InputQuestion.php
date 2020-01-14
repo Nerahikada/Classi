@@ -34,7 +34,6 @@ class InputQuestion extends SelectableQuestion{
 	protected function parseAnswers() : void{
 		$dom = $this->client->getDom($this->url);
 		foreach($dom->find('.answer-inner')->find('.clearfix') as $answerDom){
-			// Input は dd の中に入ってる。例外はまだ見たことがない(かも)
 			$answer = $answerDom->find('dd')->text;
 
 			// 国語の問題などは () の中に別解が入ってたりするのでクソ
