@@ -31,12 +31,18 @@ class DropdownQuestion extends SelectableQuestion{
 				$choice[] = $s->text;
 			}
 			$this->choices[] = $choice;
-			$this->choiceNames[] = $select->find('input')->name;
+			/**
+			 * answer_data[sections][][questions][][user_answer][] を
+			 * answer_data[sections][][questions][][user_answer] にするために
+			 * ごり押し！ゴリラ！！！！
+			 */
+			$input = $select->find('input');
+			$this->choiceNames[] = substr($input->name, 0, strlen($input->name) - 2);
 		}
 	}
 
 	protected function parseAnswers() : void{
-		$dom = $this->client->getDom($this->url);
+		$dom = $this->client->responseToDom($this->sendAnswer());
 		foreach($dom->find('.answer-inner') as $answerDom){
 			foreach($answerDom->find('dd') as $key => $dd){
 				$answer = $dd->text;

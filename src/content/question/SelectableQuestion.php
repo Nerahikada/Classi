@@ -46,7 +46,10 @@ abstract class SelectableQuestion extends Question{
 		$this->parseAnswers();
 		$this->postData = array_merge($this->postData, $this->prepare());
 		$response = $this->sendAnswer();
-		$body = (string) $response->getBody();
-		return strpos($body, 'answer-correct') !== false;
+		$correct = strpos((string) $response->getBody(), 'answer-correct') !== false;
+		if($correct){
+			$this->sendAnswer(true);
+		}
+		return $correct;
 	}
 }

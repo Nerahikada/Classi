@@ -27,12 +27,17 @@ class InputQuestion extends SelectableQuestion{
 		$dom = $this->client->getDom($this->url);
 		foreach($dom->find('.spen-mod-input-text') as $input){
 			$this->choices[] = null;
-			$this->choiceNames[] = $input->name;
+			/**
+			 * answer_data[sections][][questions][][user_answer][] を
+			 * answer_data[sections][][questions][][user_answer] にするために
+			 * ごり押し！ゴリラ！！！！
+			 */
+			$this->choiceNames[] = substr($input->name, 0, strlen($input->name) - 2);
 		}
 	}
 
 	protected function parseAnswers() : void{
-		$dom = $this->client->getDom($this->url);
+		$dom = $this->client->responseToDom($this->sendAnswer());
 		foreach($dom->find('.answer-inner')->find('.clearfix') as $answerDom){
 			$answer = $answerDom->find('dd')->text;
 

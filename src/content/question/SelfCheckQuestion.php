@@ -26,8 +26,7 @@ use Classi\Client;
 class SelfCheckQuestion{
 
 	public function solve() : bool{
-		$response = $this->sendAnswer();
-		$dom = $this->client->responseToDom($response);
+		$dom = $this->client->responseToDom($this->sendAnswer());
 		$postData = [];
 		foreach($dom->find('form')->find('input') as $input){
 			if($input->type === 'radio' && $input->value == '0'){

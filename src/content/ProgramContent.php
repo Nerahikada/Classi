@@ -25,6 +25,7 @@ use Classi\content\question\CheckboxQuestion;
 use Classi\content\question\DropdownQuestion;
 use Classi\content\question\InputQuestion;
 use Classi\content\question\SelfCheckQuestion;
+use Classi\Client;
 
 class ProgramContent extends Content{
 

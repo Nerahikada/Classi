@@ -28,29 +28,31 @@ class CheckboxQuestion extends SelectableQuestion{
 		foreach($dom->find('.selectors-preview-list')->find('li') as $list){
 			$input = $list->find('.checkbox');
 			$choice = trim($list->find('.select-substance')->text);
-			if(empty($choice)){
-				// なんでかよく分からないけど、選択肢に画像が使われているんよ、うん。まあいわゆるクソってやつだけど、
-				// textが空ってことは、画像が使われているってことでいいんじゃないかなぁ。
-				$img = $list->find('.select-substance')->find('img');
-				if($img->count() === 0){
-					throw new \RuntimeException('Select is empty');
-				}
+
+			// なんでかよく分からないけど、選択肢に画像が使われているんよ、うん。
+			$img = $list->find('.select-substance')->find('img');
+			if($img->count() > 0){
 				$choice = $img->src;
 			}
+
 			$this->choices[(int) $input->value] = $choice;
-			$this->choiceNames[(int) $input->value] = $input->name;
+			/**
+			 * answer_data[sections][][questions][][user_answer][] を
+			 * answer_data[sections][][questions][][user_answer] にするために
+			 * ごり押し！ゴリラ！！！！
+			 */
+			$this->choiceNames[(int) $input->value] = substr($input->name, 0, strlen($input->name) - 2);
 		}
 	}
 
 	protected function parseAnswers() : void{
-		$dom = $this->client->getDom($this->url);
+		$dom = $this->client->responseToDom($this->sendAnswer());
 		// foreach 使ってるけど、Checkboxの答え一つしかなかったような希ガス
 		// そもそも answers って名前でよかったのかも謎
 		foreach($dom->find('.answer-inner')->find('.clearfix') as $answerDom){
-			// 答え一つしかないから ->text で直接取れる (例外はまだ見たことがない(だけ))
-			$answer = trim($answerDom->text);
+			$answer = ($dd = $answerDom->find('dd'))->count() > 0 ? $dd->text : $answerDom->text;
+			$answer = trim($answer);
 			if(empty($answer)){
-				// なんでかｙ(ry)
 				$img = $answerDom->find('.img');
 				if($img->count() === 0){
 					throw new \RuntimeException('Answer is empty');

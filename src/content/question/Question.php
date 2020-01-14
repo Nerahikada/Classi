@@ -45,13 +45,29 @@ abstract class Question{
 		$dom = $client->getDom($url);
 		$this->postUrl = 'https://video.classi.jp' . $dom->find('form')->action;
 		foreach($dom->find('form')->find('input') as $input){
+			if($input->name === 'answer_data[sections][][questions][][user_answer][]'){
+				continue;
+			}
 			$this->postData[$input->name] = $input->value;
 		}
 	}
 
-	protected function sendAnswer() : ResponseInterface{
+	protected function sendAnswer(bool $complete = false) : ResponseInterface{
+		/**
+		 * これはひどい。
+		 * https://github.com/guzzle/guzzle/issues/1196#issuecomment-343624484
+		 */
+		$query = \GuzzleHttp\Psr7\build_query($this->postData, PHP_QUERY_RFC1738);
+
+
+		if($complete){
+			$query .= '&commit=完了する';
+		}
 		return $this->client->getHttpClient()->post($this->postUrl, [
-			'form_params' => $this->postData
+			'body' => $query,
+			'headers' => [
+				'content-type' => 'application/x-www-form-urlencoded;charset=UTF-8'
+			]
 		]);
 	}
 

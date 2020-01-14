@@ -90,7 +90,8 @@ class Client{
 	/**
 	 * @return VideoCourse[]
 	 */
-	public function getHomeworkList() : array{
+	public function getHomeworkList(?int $max = null) : array{
+		$count = 0;
 		$result = [];
 		$this->getLogger()->debug('Getting all delivered challenge history...');
 		$dom = $this->getDom('https://video.classi.jp/student/challenge_delivery_history/challenge_delivery_history_school_in_studying');
@@ -147,6 +148,10 @@ class Client{
 			);
 			$result[] = $course;
 			$this->getLogger()->debug('Course: ' . $course->getName());
+
+			if($max !== null && ++$count >= $max){
+				break;
+			}
 		}
 		return $result;
 	}
