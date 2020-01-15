@@ -45,10 +45,16 @@ abstract class Question{
 		$dom = $client->getDom($url);
 		$this->postUrl = 'https://video.classi.jp' . $dom->find('form')->action;
 		foreach($dom->find('form')->find('input') as $input){
+			/*
 			if(strpos($input->name, 'answer_data[sections][][questions][][user_answer]') !== false){
 				continue;
 			}
-			$this->postData[$input->name][] = $input->value;
+			*/
+			if($input->name === 'utf8'){
+				$this->postData[$input->name] = '✓';
+			}else{
+				$this->postData[$input->name][] = $input->value;
+			}
 		}
 	}
 
@@ -59,7 +65,7 @@ abstract class Question{
 		 */
 		$query = \GuzzleHttp\Psr7\build_query($this->postData, PHP_QUERY_RFC1738);
 
-
+//var_dump($query);
 		if($complete){
 			$query .= '&commit=完了する';
 		}

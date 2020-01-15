@@ -55,7 +55,7 @@ class TrueFalseQuestion extends SelectableQuestion{
 
 		$result = [];
 		foreach($this->answers as $key => $value){
-			$result[$this->choiceNames[$key]][] = $this->choices[$value];
+			$result[$this->choiceNames[$key]][] = $this->choices[$key][$value];
 		}
 		if(empty($result)){
 			throw new \RuntimeException('Final result is empty');
