@@ -23,7 +23,7 @@ namespace Classi\content\question;
 
 use Classi\Client;
 
-class SelfCheckQuestion{
+class SelfCheckQuestion extends Question{
 
 	public function solve() : bool{
 		$dom = $this->client->responseToDom($this->sendAnswer());
