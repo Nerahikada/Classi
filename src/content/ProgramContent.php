@@ -25,6 +25,7 @@ use Classi\content\question\CheckboxQuestion;
 use Classi\content\question\DropdownQuestion;
 use Classi\content\question\InputQuestion;
 use Classi\content\question\SelfCheckQuestion;
+use Classi\content\question\TrueFalseQuestion;
 use Classi\Client;
 
 class ProgramContent extends Content{
@@ -48,6 +49,8 @@ class ProgramContent extends Content{
 				$question = new InputQuestion($this->client, $this->url);
 			}elseif(strpos($body, 'spen-mod-select') !== false){
 				$question = new DropdownQuestion($this->client, $this->url);
+			}elseif(strpos($body, 'spen-mod-true-false-radio-box') !== false){
+				$question = new TrueFalseQuestion($this->client, $this->url);
 			}else{
 				throw new \RuntimeException('Not found question type');
 			}
