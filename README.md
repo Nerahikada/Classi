@@ -8,4 +8,4 @@
 ログインはベネッセID(SASSIで始まる)しか対応していません。
 
 ## 宿題を自動でやるには
-[こっちを参照](https://github.com/Nerahikada/)
+[こっちを参照](https://github.com/Nerahikada/DoClassiHomework)
