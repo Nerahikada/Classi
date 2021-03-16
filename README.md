@@ -1,2 +1,3 @@
-# Classi
-自動で宿題をやることを目的としたClassiのためのAPI。
+# Automated Classi
+自動でClassiの宿題をやってくれるPHPで書かれたツール。  
+実装はただのウェブスクレイピングです。
